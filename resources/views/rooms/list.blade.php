@@ -10,7 +10,7 @@
         </h1>
 
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">หน้าหลัก</a></li>
+            <li class="breadcrumb-item"><a href="{{ url('/') }}">หน้าหลัก</a></li>
             <li class="breadcrumb-item active">รายการห้องประชุม</li>
         </ol>
     </section>
@@ -99,7 +99,7 @@
                                         </a>
 
                                         <!-- Pull Right Button -->
-                                        <a href="{{ url('room/delete/'.$room->room_id) }}" class="btn btn-danger btn-xs pull-right">
+                                        <a ng-click="delete({{ $room->room_id }})" class="btn btn-danger btn-xs pull-right">
                                             <i class="fa fa-trash"></i> ลบ 
                                         </a>
                                         <a href="{{ url('room/edit/'.$room->room_id) }}" class="btn btn-warning btn-xs pull-right" style="margin-right: 4px;">

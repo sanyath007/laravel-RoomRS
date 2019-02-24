@@ -13,7 +13,7 @@ app.controller('roomCtrl', function($scope, $http, toaster, CONFIG, ModalService
         room_capacity: 0,
         room_locate: '',
         room_pay_rate: 0.0,
-        room_reserve_max: 0,
+        room_reserv_max: 0,
         room_contact_tel: '',
         room_detail: '',
         room_color: ''
@@ -68,24 +68,25 @@ app.controller('roomCtrl', function($scope, $http, toaster, CONFIG, ModalService
             toaster.pop('warning', "", 'กรุณาข้อมูลให้ครบก่อน !!!');
             return;
         } else {
-            // $http.post(CONFIG.BASE_URL + '/room/store', $scope.room)
-            // .then(function(res) {
-            //     console.log(res);
-            //     toaster.pop('success', "", 'บันทึกข้อมูลเรียบร้อยแล้ว !!!');
-            // }, function(err) {
-            //     console.log(err);
-            //     toaster.pop('error', "", 'พบข้อผิดพลาด !!!');
-            // });            
+            $http.post(CONFIG.BASE_URL + '/room/store', $scope.room)
+            .then(function(res) {
+                console.log(res);
+                toaster.pop('success', "", 'บันทึกข้อมูลเรียบร้อยแล้ว !!!');
+            }, function(err) {
+                console.log(err);
+                toaster.pop('error', "", 'พบข้อผิดพลาด !!!');
+            });            
         }
 
-        // document.getElementById('frmNewRoom').reset();
+        document.getElementById('frmNewRoom').reset();
     }
 
-    $scope.getCreditor = function(creditorId) {
-        $http.get(CONFIG.BASE_URL + '/creditor/get-creditor/' +creditorId)
+    $scope.getRoom = function(roomId) {
+        $http.get(CONFIG.BASE_URL + '/room/get-room/' +roomId)
         .then(function(res) {
             console.log(res);
-            $scope.creditor = res.data.creditor;
+            $scope.room = res.data.room;
+            console.log($scope.room);
         }, function(err) {
             console.log(err);
         });
@@ -118,7 +119,7 @@ app.controller('roomCtrl', function($scope, $http, toaster, CONFIG, ModalService
     $scope.delete = function(roomId) {
         console.log(roomId);
 
-        if(confirm("คุณต้องลบเจ้าหนี้เลขที่ " + roomId + " ใช่หรือไม่?")) {
+        if(confirm("คุณต้องลบห้องประชุม ID : " + roomId + " ใช่หรือไม่?")) {
             $http.delete(CONFIG.BASE_URL + '/room/delete/' +roomId)
             .then(function(res) {
                 console.log(res);
@@ -128,6 +129,8 @@ app.controller('roomCtrl', function($scope, $http, toaster, CONFIG, ModalService
                 console.log(err);
                 toaster.pop('error', "", 'พบข้อผิดพลาด !!!');
             });
+
+            window.location.href = CONFIG.BASE_URL + '/room/list';
         }
     };
 });

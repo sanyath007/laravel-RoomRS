@@ -10,7 +10,7 @@
         </h1>
 
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">หน้าหลัก</a></li>
+            <li class="breadcrumb-item"><a href="{{ url('/') }}">หน้าหลัก</a></li>
             <li class="breadcrumb-item active">รายละเอียดห้องประชุม</li>
         </ol>
     </section>

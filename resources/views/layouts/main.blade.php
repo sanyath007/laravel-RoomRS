@@ -445,8 +445,8 @@
 							<li><a href="{{ url('/reserve/calendar') }}"><i class="fa fa-circle-o"></i> ตารางการใช้ห้อง</a></li>
 							<li><a href="{{ url('/reserve/list') }}"><i class="fa fa-circle-o"></i> รายการจองห้อง</a></li>
 							<li><a href="{{ url('/reserve/add') }}"><i class="fa fa-circle-o"></i> จองใช้ห้อง</a></li>
-							<li><a href="{{ url('/reserve/status') }}"><i class="fa fa-circle-o"></i> สถานะห้องประชุม</a></li>
-							<li><a href="{{ url('/reserve/cancel') }}"><i class="fa fa-circle-o"></i> ยกเลิกการจองห้อง</a></li>
+							<!-- <li><a href="{{ url('/reserve/status') }}"><i class="fa fa-circle-o"></i> สถานะห้องประชุม</a></li>
+							<li><a href="{{ url('/reserve/cancel') }}"><i class="fa fa-circle-o"></i> ยกเลิกการจองห้อง</a></li> -->
 						</ul>
 					</li>					
 					<li class="treeview">

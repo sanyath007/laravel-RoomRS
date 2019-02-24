@@ -16,7 +16,7 @@
     </section>
 
     <!-- Main content -->
-    <section class="content" ng-controller="creditorCtrl" ng-init="getData()">
+    <section class="content" ng-controller="roomCtrl">
 
         <div class="row">
             <div class="col-md-12">

@@ -26,7 +26,7 @@
                         <h3 class="box-title">เพิ่มห้องประชุม</h3>
                     </div>
 
-                    <form id="frmNewRoom" name="frmNewRoom" method="post" action="{{ url('/room/store') }}" role="form">
+                    <form id="frmNewRoom" name="frmNewRoom" method="post" action="{{ url('/room/store') }}" role="form" enctype="multipart/form-data">
                         <input type="hidden" id="user" name="user" value="{{ Auth::user()->person_id }}">
                         {{ csrf_field() }}
                         
@@ -49,7 +49,11 @@
                                     <div class="col-md-6">
                                         <div class="form-group" ng-class="{ 'has-error' : frmNewRoom.room_name.$invalid}">
                                             <label class="control-label">ชื่อห้อง :</label>
-                                            <input type="text" id="room_name" name="room_name" ng-model="room.room_name" class="form-control" required>
+                                            <input type="text" 
+                                                    id="room_name" 
+                                                    name="room_name" 
+                                                    ng-model="room.room_name" 
+                                                    class="form-control" required>
                                             <div class="help-block" ng-show="frmNewRoom.room_name.$error.required">
                                                 กรุณากรอกชื่อห้องก่อน
                                             </div>
@@ -57,7 +61,11 @@
                                         
                                         <div class="form-group" ng-class="{ 'has-error' : frmNewRoom.room_locate.$invalid}">
                                             <label class="control-label">ที่ตั้ง :</label>
-                                            <input type="text" id="room_locate" name="room_locate" ng-model="room.room_locate" class="form-control" required>
+                                            <input type="text" 
+                                                    id="room_locate" 
+                                                    name="room_locate" 
+                                                    ng-model="room.room_locate" 
+                                                    class="form-control" required>
                                             <div class="help-block" ng-show="frmNewRoom.room_locate.$error.required">
                                                 กรุณากรอกที่ตั้งก่อน
                                             </div>
@@ -65,15 +73,27 @@
 
                                         <div class="form-group" ng-class="{ 'has-error' : frmNewRoom.room_pay_rate.$invalid}">
                                             <label class="control-label">ราคาค่าใช้จ่ายห้อง (บาท) :</label>
-                                            <input type="text" id="room_pay_rate" name="room_pay_rate" ng-model="room.room_pay_rate" class="form-control" required>
+                                            <input type="text" 
+                                                    id="room_pay_rate" 
+                                                    name="room_pay_rate" 
+                                                    ng-model="room.room_pay_rate"
+                                                    pattern="^[-+]?[0-9]*\.?[0-9]+$"
+                                                    class="form-control">
                                             <div class="help-block" ng-show="frmNewRoom.room_pay_rate.$error.required">
                                                 กรุณากำหนดราคาค่าใช้จ่ายห้องก่อน
+                                            </div>
+                                            <div class="help-block" ng-show="frmNewRoom.room_pay_rate.$error.pattern">
+                                                กรุณากรอกราคาค่าใช้จ่ายห้องเป็นตัวเลข
                                             </div>
                                         </div>
 
                                         <div class="form-group" ng-class="{ 'has-error' : frmNewRoom.room_contact_tel.$invalid}">
                                             <label class="control-label">โทรศัพท์ :</label>
-                                            <input type="text" id="room_contact_tel" name="room_contact_tel" ng-model="room.room_contact_tel" class="form-control">
+                                            <input type="text" 
+                                                    id="room_contact_tel" 
+                                                    name="room_contact_tel" 
+                                                    ng-model="room.room_contact_tel" 
+                                                    class="form-control">
                                             <div class="help-block" ng-show="frmNewRoom.room_contact_tel.$error.required">
                                                 กรุณากรอกเบอร์โทรศัพท์ก่อน
                                             </div>
@@ -82,8 +102,12 @@
 
                                     <div class="col-md-6">                                
                                         <div class="form-group" ng-class="{ 'has-error' : frmNewRoom.room_size.$invalid}">
-                                            <label class="control-label">ขนาด (เมตร) :</label>
-                                            <input type="text" id="room_size" name="room_size" ng-model="room.room_size" class="form-control" required>
+                                            <label class="control-label">ขนาด (กxย เมตร) :</label>
+                                            <input type="text" 
+                                                    id="room_size" 
+                                                    name="room_size" 
+                                                    ng-model="room.room_size" 
+                                                    class="form-control" required>
                                             <div class="help-block" ng-show="frmNewRoom.room_size.$error.required">
                                                 กรุณากรอกขนาดก่อน
                                             </div>
@@ -91,23 +115,43 @@
 
                                         <div class="form-group" ng-class="{ 'has-error' : frmNewRoom.room_capacity.$invalid}">
                                             <label class="control-label">ความจุ (คน) :</label>
-                                            <input type="text" id="room_capacity" name="room_capacity" ng-model="room.room_capacity" class="form-control" required>
+                                            <input type="text" 
+                                                    id="room_capacity" 
+                                                    name="room_capacity" 
+                                                    ng-model="room.room_capacity"
+                                                    pattern="^[-+]?[0-9]*\.?[0-9]+$"
+                                                    class="form-control" required>
                                             <div class="help-block" ng-show="frmNewRoom.room_capacity.$error.required">
                                                 กรุณากรอกความจุก่อน
+                                            </div>
+                                            <div class="help-block" ng-show="frmNewRoom.room_capacity.$error.pattern">
+                                                กรุณากรอกความจุเป็นตัวเลข
                                             </div>
                                         </div>
 
                                         <div class="form-group" ng-class="{ 'has-error' : frmNewRoom.room_reserve_max.$invalid}">
                                             <label class="control-label">จำนวนวันที่จองได้สูงสุด (วัน) :</label>
-                                            <input type="text" id="room_reserve_max" name="room_reserve_max" ng-model="room.room_reserve_max" class="form-control" required>
+                                            <input type="number" 
+                                                    id="room_reserve_max" 
+                                                    name="room_reserve_max" 
+                                                    ng-model="room.room_reserve_max"
+                                                    pattern="^[-+]?[0-9]*\.?[0-9]+$" 
+                                                    class="form-control">
                                             <div class="help-block" ng-show="frmNewRoom.room_reserve_max.$error.required">
                                                 กรุณากำหนดจำนวนวันที่จองได้สูงสุดก่อน
+                                            </div>
+                                            <div class="help-block" ng-show="frmNewRoom.room_reserve_max.$error.pattern">
+                                                กรุณากรอกจำนวนวันที่จองได้สูงสุดเป็นตัวเลข
                                             </div>
                                         </div>
 
                                         <div class="form-group" ng-class="{ 'has-error' : frmNewRoom.room_detail.$invalid}">
                                             <label class="control-label">หมายเหตุ :</label>
-                                            <input type="text" id="room_detail" name="room_detail" ng-model="room.room_detail" class="form-control">
+                                            <input type="text" 
+                                                    id="room_detail" 
+                                                    name="room_detail" 
+                                                    ng-model="room.room_detail" 
+                                                    class="form-control">
                                             <div class="help-block" ng-show="frmNewRoom.room_detail.$error.required">
                                                 กรุณากรอกหมายเหตุก่อน
                                             </div>
@@ -115,10 +159,13 @@
                                     </div>
 
                                     <div class="col-md-12">
-                                        <div class="form-group" ng-class="{ 'has-error' : frmNewRoom.room_img1.$invalid}">
+                                        <div class="form-group">
                                             <label class="control-label">รูปภาพ :</label>
-                                            <input type="file" id="room_img1" name="room_img1" ng-model="room.room_img1" class="form-control">
-                                            <div class="help-block" ng-show="frmNewRoom.room_img1.$error.required">
+                                            <input type="file" 
+                                                    id="room_img[]" 
+                                                    name="room_img[]" 
+                                                    class="form-control">
+                                            <div class="help-block" ng-show="false">
                                                 กรุณากรอกรูปภาพก่อน
                                             </div>
                                         </div>

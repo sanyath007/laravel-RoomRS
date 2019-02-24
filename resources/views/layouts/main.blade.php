@@ -91,7 +91,6 @@
 	<script src="{{ asset('/js/controllers/reservationCtrl.js') }}"></script>
 	<script src="{{ asset('/js/controllers/roomCtrl.js') }}"></script>
 	<script src="{{ asset('/js/controllers/equipmentCtrl.js') }}"></script>
-	<!-- <script src="{{ asset('/js/controllers/debtCtrl.js') }}"></script> -->
 	<script src="{{ asset('/js/controllers/reportCtrl.js') }}"></script>
 	<!--<script src="{{ asset('/js/directives/highcharts.js') }}"></script>-->
 	<script src="{{ asset('/js/services/report.js') }}"></script>
